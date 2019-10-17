@@ -1,0 +1,76 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.site{
+  float:left;
+  margin:5px;
+  border: solid;
+  border-radius: 7px;
+  height:330px;
+  width:200px;
+  padding:20px;
+  background-color:whitesmoke;
+}
+
+.header-left{
+  width: 1290px;
+  height:90px;
+  float:left;
+  margin-top:10px;
+  margin-left:10px;
+  margin-bottom:10px;
+  margin-right:1px;
+  padding-left:30px;
+}
+
+
+body{
+  background-color:lightyellow;
+}
+
+.box{
+  float:right;
+  background-color:pink;
+  width: 215px;
+  height: 367px;
+  margin-top: 5px;
+  margin-right: 3px;
+  border-style: solid;
+  border-radius: 7px;
+  text-align: center;
+  font-size:15px;
+}
+
+.out{
+  text-align:center;
+  padding:3px;
+  height:90px;
+  margin-top:10px;
+  margin-right:10px;
+  margin-bottom:10px;
+  margin-left:1px;
+  width:100px;
+  float:right;
+  font-family:verdana;
+}
+
+
+header {
+  height: 125px;
+  width: 100%;
+  background-color: lavender;
+  border-style:solid;
+}
+
+.btn-wrapper{
+  color:white;
+  opacity: 0.8;
+  border-radius: 4px;
+  background-color:darkslategray;
+  padding: 2px 6px;
+}
+
+.btn-wrapper:hover{
+  opacity: 1;
+}

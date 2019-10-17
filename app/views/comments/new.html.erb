@@ -1,0 +1,16 @@
+<header>
+    <div class ="title">
+      <h1>コメント入力画面</h1>
+    </div>
+</header>
+<body>
+  <%= form_tag("/products/#{@product.id}/comments", method: :post) do %>
+  <p>感想：</p>
+  <textarea name="review" cols="50" rows="10"></textarea>
+  <p>評価（1:最低～5:最高)</p>
+  <p><input type="number" name="rate" min="0" max="5" value="0"></p>
+　<input type="submit" value="送信する"></p>
+  <% end %>
+  <hr>
+  <p><%= link_to "戻る" ,"/products/#{@product.id}", method: :get %></p>
+</body>

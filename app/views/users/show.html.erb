@@ -1,0 +1,23 @@
+<body>
+ <header>
+  <div class ="container">
+    <div class="header-left">
+         <h1><%= current_user.nickname %>さんのお気に入り漫画</h1>
+    </div>
+  </div>
+ </header>
+
+<% @products.each do |product| %>
+ <div class="favorite">
+  <hr>
+   <div class="f-img"><img src= <%= product.image_url %> width="180" height="190"></div>
+   <div class="detail">
+     <div class="f-title"><p><span>タイトル: </span><%=link_to product.title, product_path(product.id) %></p></div>
+     <div class="f-director"><p><span>作者：</span><%= product.director %></p></div>
+     <div class="f-open"><p><span>発売日：</span><%= product.open_date %></p></div>
+     <div class="f-rate"><p><span>みんなからの平均評価：</span><%= product.comments.average(:rate) %></p></div>
+   </div>
+ </div>
+<% end %>
+<div class="return"><%= link_to"戻る",products_path %></div>
+</body>
