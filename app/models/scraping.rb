@@ -1,19 +1,29 @@
 class Scraping
-  def self.get_product
-    agent = Mechanize.new
-    page = agent.get("http://kc.kodansha.co.jp/new_comics")
-    elements = page.search('.title') if page.search('.title')
-    elementss = page.search('.itemImg img') if page.search('.itemImg img')
-    elementsss = page.search('.date') if page.search('.date')
-    elementssss = page.search('.author') if page.search('.author')
-    
-    elements.zip(elementss,elementsss,elementssss).each do |titles,image_urls,open_dates,directors|
-      title = titles.inner_text
-      image_url = image_urls.get_attribute('src')
-      open_date = open_dates.inner_text
-      director = directors.inner_text
-      product = Product.where(title: title, image_url: image_url, open_date: open_date, director: director).first_or_initialize
-      product.save
+def self.book_urls
+  urls = []
+  agent = Mechanize.new
+  current_page = agent.get("http://kc.kodansha.co.jp/new_comics")
+  elements = current_page.search('.detail')
+  elements.each do |ele|
+   urls << ele.get_attribute('href')
   end
+  urls.each do |url|
+    get_product(url)
   end
+
 end
+
+def self.get_product(url)
+  agent = Mechanize.new
+  page = agent.get(url)
+  title = page.at('.titStyle').inner_text if page.at('.titStyle')
+  image_url = page.at('.lineImg img')[:src] if page.at('.lineImg img')
+  director = page.at('.author a').inner_text if page.at('.author a')
+
+  product = Product.where(title: title).first_or_initialize
+  product.image_url = image_url
+  product.director = director
+  product.save
+end
+end
+
