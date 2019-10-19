@@ -7,12 +7,10 @@
     <div class="out">
       <% if user_signed_in? %>
       <p><%= link_to"ログアウト", destroy_user_session_path,  method: :delete, class:"btn-wrapper" %></p>
+      <p><%= link_to"マイページ", user_path(current_user), method: :get, class:"btn-wrapper" %></p>
       <% else %>
       <p><%= link_to"ログイン",new_user_session_path, method: :get, class:"btn-wrapper"  %></p>
       <p><%= link_to"サインイン",new_user_registration_path, class:"btn-wrapper"  %></p>
-      <% end %>
-      <% if user_signed_in? %>
-      <p><%= link_to"マイページ", user_path(current_user), method: :get, class:"btn-wrapper" %></p>
       <% end %>
       </div>
   </div>
@@ -22,7 +20,7 @@
     <div class="box">
      <p>総合評価ランキング</p>
      <% @ranking.each.with_index(1) do |product, i| %>
-     <p><span><%= i %>：</span><%= product.title %></p>
+     <p><span><%= i %>：</span><%= link_to product.title, product_path(product.id), method: :get %></p>
      <% end %>
     </div>
      <% @products.each do |product| %>
